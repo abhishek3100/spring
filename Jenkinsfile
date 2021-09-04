@@ -1,7 +1,8 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') {
+
+        stage('Cooking') {
             steps {
                 // Clean before build
                 cleanWs()

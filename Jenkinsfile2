@@ -1,7 +1,8 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') {
+
+        stage('Cooking') {
             steps {
                 // Clean before build
                 cleanWs()
@@ -10,7 +11,7 @@ pipeline {
                 echo "Building ${env.JOB_NAME}..."
             }
         }
-        
+
         stage('Build') { 
             steps {
                 sh ''' 
