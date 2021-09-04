@@ -41,8 +41,11 @@ pipeline {
             steps {
                 sh ''' 
                 echo "Running file from Fol1 in 5 sec..."
+                chmod +x ./fol1/hello.sh
                 sleep 5
-                ./fol1/hello.sh '''
+                ./fol1/hello.sh 
+                
+                '''
             }
         }
     }
