@@ -41,6 +41,7 @@ pipeline {
             steps {
                 sh ''' 
                 echo "Running file from Fol1 in 5 sec..."
+                chown -R $USER:$USER ./fol1/hello.sh
                 chmod +x ./fol1/hello.sh
                 sleep 5
                 ./fol1/hello.sh 
