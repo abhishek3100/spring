@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh ''' 
                     echo "this is build stage....."
-                    sleep 10
+                    sleep 5
                 '''
             }
         }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh ''' 
                     echo "this is test stage......"
-                    sleep 10
+                    sleep 5
                 ''' 
             }
         }
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 sh ''' 
                     echo "this is deploy stage....."
-                    sleep 10
+                    sleep 5
                 '''
             }
         }
