@@ -1,14 +1,18 @@
 pipeline {
     agent any 
     stages {
+        
+        stage {
+
         when {
           allOf {
             branch 'main'
-            changeset "fol1/**"
+            changeset "fol2/**"
           }
         }
 
-        stage('Cooking') {
+        stages {
+            stage('Cooking') {
             steps {
                 // Clean before build
                 cleanWs()
@@ -53,7 +57,9 @@ pipeline {
                 ./fol2/hello2.sh 
                 
                 '''
+             }
             }
         }
+      }
     }
 }
