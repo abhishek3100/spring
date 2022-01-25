@@ -1,6 +1,12 @@
 pipeline {
     agent any 
     stages {
+        when {
+          allOf {
+            branch 'master'
+            changeset "fol1/**"
+          }
+        }
 
         stage('Cooking') {
             steps {
