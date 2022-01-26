@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-        stages ('looking for change') {
+        stage ('looking for change') {
             when {
                 allOf {
                     branch 'main'
