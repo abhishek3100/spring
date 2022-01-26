@@ -19,7 +19,13 @@ pipeline {
                     changeset "fol1/**"
                 }
             }
-            stage('Build') { 
+            steps {
+                echo "building..."
+            }
+            
+        }
+        
+        stage('Build') { 
             steps {
                 sh ''' 
                     echo "this is build stage....."
@@ -56,7 +62,5 @@ pipeline {
                 '''
             }
         }
-
-        }    
     }
 }
