@@ -2,15 +2,6 @@ pipeline {
     agent any 
     stages {
 
-        stage ('looking for change') {
-            when {
-                allOf {
-                    branch 'main'
-                    changeset "fol1/**"
-                }
-            }
-        }
-
         stage('Cooking') {
             steps {
                 // Clean before build
@@ -20,8 +11,15 @@ pipeline {
                 echo "Building ${env.JOB_NAME}..."
             }
         }
-        
-        stage('Build') { 
+
+        stages ('looking for change') {
+            when {
+                allOf {
+                    branch 'main'
+                    changeset "fol1/**"
+                }
+            }
+            stage('Build') { 
             steps {
                 sh ''' 
                     echo "this is build stage....."
@@ -58,5 +56,7 @@ pipeline {
                 '''
             }
         }
+
+        }    
     }
 }
