@@ -1,6 +1,7 @@
 pipeline {
     agent any 
     stages {
+        
 
         stage('Cooking') {
             steps {
@@ -12,55 +13,67 @@ pipeline {
             }
         }
 
-        stage ('looking for change') {
+        stage('Build') { 
             when {
                 allOf {
                     branch 'main'
-                    changeset "fol1/**"
+                    changeset 'fol1/**'
                 }
             }
             steps {
-                echo "building..."
-            }
-            
-        }
-        
-        stage('Build') { 
-            steps {
                 sh ''' 
                     echo "this is build stage....."
-                    sleep 5
+                    sleep 10
                 '''
             }
         }
         stage('Test') { 
+            when {
+                allOf {
+                    branch 'main'
+                    changeset 'fol1/**'
+                }
+            }
             steps {
                 sh ''' 
                     echo "this is test stage......"
-                    sleep 5
+                    sleep 10
                 ''' 
             }
         }
         stage('Deploy') { 
+            when {
+                allOf {
+                    branch 'main'
+                    changeset 'fol1/**'
+                }
+            }
             steps {
                 sh ''' 
                     echo "this is deploy stage....."
-                    sleep 5
+                    sleep 10
                 '''
             }
         }
 
         stage('Running File') {
+            when {
+                allOf {
+                    branch 'main'
+                    changeset 'fol1/**'
+                }
+            }
             steps {
                 sh ''' 
-                echo "Running file from Fol1 in 5 sec..."
-                chown -R $USER:$USER ./fol1/hello.sh
-                chmod +x ./fol1/hello.sh
+                echo "Running file from Fol2 in 5 sec..."
+                chown -R $USER:$USER ./fol2/hello2.sh
+                chmod +x ./fol2/hello2.sh
                 sleep 5
-                ./fol1/hello.sh 
+                ./fol2/hello2.sh 
                 
                 '''
             }
         }
     }
 }
+
