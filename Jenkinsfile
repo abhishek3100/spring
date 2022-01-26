@@ -1,18 +1,17 @@
 pipeline {
     agent any 
     stages {
-        
-        stages {
 
-        when {
-          allOf {
-            branch 'main'
-            changeset "fol1/**"
-          }
+        stage ('looking for change') {
+            when {
+                allOf {
+                    branch 'main'
+                    changeset "fol1/**"
+                }
+            }
         }
 
-        stages {
-            stage('Cooking') {
+        stage('Cooking') {
             steps {
                 // Clean before build
                 cleanWs()
@@ -21,12 +20,12 @@ pipeline {
                 echo "Building ${env.JOB_NAME}..."
             }
         }
-
+        
         stage('Build') { 
             steps {
                 sh ''' 
                     echo "this is build stage....."
-                    sleep 10
+                    sleep 5
                 '''
             }
         }
@@ -34,7 +33,7 @@ pipeline {
             steps {
                 sh ''' 
                     echo "this is test stage......"
-                    sleep 10
+                    sleep 5
                 ''' 
             }
         }
@@ -42,7 +41,7 @@ pipeline {
             steps {
                 sh ''' 
                     echo "this is deploy stage....."
-                    sleep 10
+                    sleep 5
                 '''
             }
         }
@@ -51,15 +50,13 @@ pipeline {
             steps {
                 sh ''' 
                 echo "Running file from Fol1 in 5 sec..."
-                chown - R $USER: $USER. / fol1 / hello.sh
-                chmod + x. / fol1 / hello.sh
+                chown -R $USER:$USER ./fol1/hello.sh
+                chmod +x ./fol1/hello.sh
                 sleep 5
-                . / fol1 / hello.sh 
+                ./fol1/hello.sh 
                 
                 '''
-             }
             }
         }
-      }
     }
 }
